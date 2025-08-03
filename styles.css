@@ -1,0 +1,949 @@
+/* CSS Custom Properties */
+:root {
+    --primary-color: #2563eb;
+    --secondary-color: #64748b;
+    --success-color: #059669;
+    --background-color: #f8fafc;
+    --text-color: #1e293b;
+    --border-color: #e2e8f0;
+    --max-width: 1200px;
+    --base-spacing: 1rem;
+    --border-radius: 0.375rem;
+    --transition-duration: 0.2s;
+}
+
+/* Reset and Base Styles with Cross-Browser Support */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Normalize form elements across browsers */
+button,
+input,
+optgroup,
+select,
+textarea {
+    font-family: inherit;
+    font-size: 100%;
+    line-height: 1.15;
+    margin: 0;
+}
+
+/* Remove default button styling */
+button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* Improve text rendering */
+html {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    line-height: 1.5;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    font-size: 1rem;
+    min-height: 100vh;
+    scroll-behavior: smooth;
+}
+
+/* Typography */
+h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: var(--base-spacing);
+    color: var(--primary-color);
+}
+
+h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: calc(var(--base-spacing) * 0.75);
+}
+
+h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: calc(var(--base-spacing) * 0.5);
+}
+
+p {
+    margin-bottom: var(--base-spacing);
+}
+
+/* Layout */
+header {
+    text-align: center;
+    padding: calc(var(--base-spacing) * 2) var(--base-spacing);
+    max-width: var(--max-width);
+    margin: 0 auto;
+}
+
+main {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--base-spacing);
+    min-height: 60vh;
+}
+
+footer {
+    text-align: center;
+    padding: calc(var(--base-spacing) * 2) var(--base-spacing);
+    margin-top: calc(var(--base-spacing) * 2);
+}
+
+/* Enhanced Accessibility and Focus Management */
+:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* Ensure focus is visible in high contrast mode */
+:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* Remove focus outline for mouse users, keep for keyboard users */
+:focus:not(:focus-visible) {
+    outline: none;
+}
+
+/* Ensure interactive elements have minimum touch target size */
+a,
+button,
+input,
+select,
+textarea {
+    min-height: 44px;
+    min-width: 44px;
+}
+
+/* Improve link accessibility */
+a {
+    color: var(--primary-color);
+    text-decoration: underline;
+    text-decoration-skip-ink: auto;
+}
+
+a:hover {
+    text-decoration-thickness: 2px;
+}
+
+/* Ensure sufficient color contrast for all text */
+::selection {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+::-moz-selection {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Screen reader only content */
+.sr-only {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
+/* Show screen reader content when focused (skip links) */
+.sr-only-focusable:focus {
+    position: static !important;
+    width: auto !important;
+    height: auto !important;
+    padding: 0.5rem 1rem !important;
+    margin: 0 !important;
+    overflow: visible !important;
+    clip: auto !important;
+    white-space: normal !important;
+    background-color: var(--primary-color) !important;
+    color: white !important;
+    text-decoration: none !important;
+    border-radius: var(--border-radius) !important;
+    z-index: 1000 !important;
+    display: block !important;
+    text-align: center !important;
+}
+
+/* Enhanced Print Styles */
+@media print {
+    * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    body {
+        background-color: white !important;
+        color: black !important;
+        font-size: 12pt !important;
+        line-height: 1.4 !important;
+    }
+
+    header {
+        border-bottom: 2px solid black !important;
+        margin-bottom: 1rem !important;
+        page-break-after: avoid !important;
+    }
+
+    footer {
+        border-top: 1px solid black !important;
+        margin-top: 1rem !important;
+        page-break-before: avoid !important;
+    }
+
+    h1 {
+        font-size: 18pt !important;
+        color: black !important;
+    }
+
+    h2 {
+        font-size: 14pt !important;
+        color: black !important;
+    }
+
+    /* Hide navigation elements in print */
+    .answer-link,
+    .nav-link,
+    nav {
+        display: none !important;
+    }
+
+    /* Print-specific quiz form layout */
+    .quiz-form {
+        display: block !important;
+        columns: 2 !important;
+        column-gap: 1rem !important;
+        column-fill: balance !important;
+    }
+
+    .state-item {
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        padding: 0.25rem 0 !important;
+        margin-bottom: 0.5rem !important;
+        border: none !important;
+        border-bottom: 1px dotted #ccc !important;
+        box-shadow: none !important;
+        background: none !important;
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+    }
+
+    .state-item label {
+        font-weight: bold !important;
+        margin-right: 1rem !important;
+    }
+
+    .state-item input[type="text"] {
+        border: none !important;
+        border-bottom: 1px solid black !important;
+        background: none !important;
+        padding: 0 !important;
+        min-width: 3rem !important;
+        text-align: right !important;
+    }
+
+    /* Print-specific answer list layout */
+    .answer-list {
+        display: block !important;
+        columns: 2 !important;
+        column-gap: 1rem !important;
+        column-fill: balance !important;
+    }
+
+    .answer-item {
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        padding: 0.25rem 0 !important;
+        margin-bottom: 0.5rem !important;
+        border: none !important;
+        border-bottom: 1px dotted #ccc !important;
+        box-shadow: none !important;
+        background: none !important;
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+    }
+
+    .state-name {
+        font-weight: bold !important;
+        color: black !important;
+    }
+
+    .capital-name {
+        color: black !important;
+        font-weight: normal !important;
+    }
+
+    /* Add page title for print */
+    @page {
+        margin: 1in;
+
+        @top-center {
+            content: "US Capital Quiz";
+        }
+    }
+}
+
+/* Responsive design foundation */
+@media (max-width: 768px) {
+    :root {
+        --base-spacing: 0.875rem;
+    }
+
+    h1 {
+        font-size: 1.75rem;
+    }
+
+    header,
+    main,
+    footer {
+        padding-left: calc(var(--base-spacing) * 0.75);
+        padding-right: calc(var(--base-spacing) * 0.75);
+    }
+}
+
+/* Quiz Form Styles */
+.quiz-form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: calc(var(--base-spacing) * 1.5);
+    margin-bottom: calc(var(--base-spacing) * 2);
+}
+
+.state-item {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--base-spacing) * 0.5);
+    padding: var(--base-spacing);
+    background-color: white;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: all var(--transition-duration) ease;
+}
+
+.state-item:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-color: var(--primary-color);
+    transform: translateY(-1px);
+}
+
+.state-item label {
+    font-weight: 600;
+    color: var(--text-color);
+    font-size: 1rem;
+    margin-bottom: calc(var(--base-spacing) * 0.25);
+}
+
+.state-item input[type="text"] {
+    padding: calc(var(--base-spacing) * 0.75);
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-family: inherit;
+    background-color: #ffffff;
+    color: var(--text-color);
+    transition: all var(--transition-duration) ease;
+    min-height: 2.5rem;
+    width: 100%;
+    /* Cross-browser input styling */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    /* Prevent zoom on iOS */
+    font-size: max(1rem, 16px);
+}
+
+.state-item input[type="text"]:hover {
+    border-color: var(--secondary-color);
+}
+
+.state-item input[type="text"]:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.state-item input[type="text"]::placeholder {
+    color: var(--secondary-color);
+    opacity: 0.7;
+}
+
+/* Navigation Links */
+.answer-link {
+    display: inline-block;
+    padding: calc(var(--base-spacing) * 0.75) calc(var(--base-spacing) * 1.5);
+    background-color: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    transition: all var(--transition-duration) ease;
+    border: 2px solid var(--primary-color);
+}
+
+.answer-link:hover {
+    background-color: #1d4ed8;
+    border-color: #1d4ed8;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transform: translateY(-1px);
+}
+
+.answer-link:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.3);
+}
+
+.answer-link:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Answer Key Styles */
+.answer-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: calc(var(--base-spacing) * 0.75);
+    margin-bottom: calc(var(--base-spacing) * 2);
+}
+
+.answer-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: calc(var(--base-spacing) * 0.75) var(--base-spacing);
+    background-color: white;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: all var(--transition-duration) ease;
+}
+
+.answer-item:hover {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-color: var(--success-color);
+    transform: translateY(-1px);
+}
+
+.state-name {
+    font-weight: 600;
+    color: var(--text-color);
+    font-size: 1rem;
+    flex: 1;
+}
+
+.capital-name {
+    font-weight: 500;
+    color: var(--success-color);
+    font-size: 1rem;
+    text-align: right;
+    margin-left: var(--base-spacing);
+}
+
+/* Navigation Link for Answer Page */
+.nav-link {
+    display: inline-block;
+    padding: calc(var(--base-spacing) * 0.75) calc(var(--base-spacing) * 1.5);
+    background-color: var(--secondary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    transition: all var(--transition-duration) ease;
+    border: 2px solid var(--secondary-color);
+}
+
+.nav-link:hover {
+    background-color: #475569;
+    border-color: #475569;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transform: translateY(-1px);
+}
+
+.nav-link:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(100, 116, 139, 0.3);
+}
+
+.nav-link:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 
+Enhanced Responsive Design - Mobile First Approach */
+
+/* Mobile styles (320px+) - Base styles already mobile-first */
+@media (max-width: 480px) {
+    :root {
+        --base-spacing: 0.75rem;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.25rem;
+    }
+
+    /* Quiz form adjustments for small screens */
+    .quiz-form {
+        grid-template-columns: 1fr;
+        gap: var(--base-spacing);
+    }
+
+    .state-item {
+        padding: calc(var(--base-spacing) * 0.75);
+    }
+
+    .state-item input[type="text"] {
+        padding: calc(var(--base-spacing) * 0.5);
+        font-size: 0.9rem;
+    }
+
+    /* Answer list adjustments */
+    .answer-list {
+        grid-template-columns: 1fr;
+        gap: calc(var(--base-spacing) * 0.5);
+    }
+
+    .answer-item {
+        padding: calc(var(--base-spacing) * 0.5) calc(var(--base-spacing) * 0.75);
+        flex-direction: column;
+        align-items: flex-start;
+        gap: calc(var(--base-spacing) * 0.25);
+    }
+
+    .capital-name {
+        text-align: left;
+        margin-left: 0;
+        font-size: 0.9rem;
+    }
+
+    .state-name {
+        font-size: 0.9rem;
+    }
+
+    /* Navigation links */
+    .answer-link,
+    .nav-link {
+        padding: calc(var(--base-spacing) * 0.5) var(--base-spacing);
+        font-size: 0.9rem;
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* Tablet styles (768px+) */
+@media (min-width: 768px) {
+    :root {
+        --base-spacing: 1rem;
+    }
+
+    /* Quiz form - 2 columns on tablet */
+    .quiz-form {
+        grid-template-columns: repeat(2, 1fr);
+        gap: calc(var(--base-spacing) * 1.25);
+    }
+
+    /* Answer list - 2 columns on tablet */
+    .answer-list {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--base-spacing);
+    }
+
+    .answer-item {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .capital-name {
+        text-align: right;
+        margin-left: var(--base-spacing);
+    }
+
+    /* Navigation adjustments */
+    .answer-link,
+    .nav-link {
+        width: auto;
+        display: inline-block;
+    }
+}
+
+/* Desktop styles (1024px+) */
+@media (min-width: 1024px) {
+    :root {
+        --base-spacing: 1.25rem;
+    }
+
+    h1 {
+        font-size: 2.25rem;
+    }
+
+    /* Quiz form - 3 columns on desktop */
+    .quiz-form {
+        grid-template-columns: repeat(3, 1fr);
+        gap: calc(var(--base-spacing) * 1.5);
+    }
+
+    /* Answer list - 3 columns on desktop */
+    .answer-list {
+        grid-template-columns: repeat(3, 1fr);
+        gap: calc(var(--base-spacing) * 1.25);
+    }
+
+    .state-item:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .answer-item:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+}
+
+/* Large desktop styles (1200px+) */
+@media (min-width: 1200px) {
+
+    /* Quiz form - up to 4 columns on very large screens */
+    .quiz-form {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    /* Answer list - up to 4 columns on very large screens */
+    .answer-list {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* High DPI / Retina display optimizations */
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) {
+
+    .state-item,
+    .answer-item {
+        border-width: 0.5px;
+    }
+}
+
+/* Landscape orientation adjustments for mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+    .quiz-form {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .answer-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Print-specific responsive adjustments */
+@media print {
+    .quiz-form {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+    }
+
+    .answer-list {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.25rem;
+    }
+
+    .state-item,
+    .answer-item {
+        box-shadow: none;
+        border: 1px solid #ccc;
+        break-inside: avoid;
+        margin-bottom: 0.25rem;
+    }
+
+    .answer-link,
+    .nav-link {
+        display: none;
+    }
+}
+
+/* Accessibility: Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .state-item:hover,
+    .answer-item:hover,
+    .answer-link:hover,
+    .nav-link:hover {
+        transform: none;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    :root {
+        --border-color: #000000;
+        --text-color: #000000;
+        --background-color: #ffffff;
+    }
+
+    .state-item,
+    .answer-item {
+        border-width: 2px;
+    }
+
+    .state-item input[type="text"] {
+        border-width: 2px;
+    }
+}
+
+/* 
+Cross-Browser Compatibility Enhancements */
+
+/* Fix for older browsers that don't support CSS Grid */
+@supports not (display: grid) {
+    .quiz-form {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .state-item {
+        width: calc(50% - 0.5rem);
+        margin-bottom: 1rem;
+    }
+
+    .answer-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .answer-item {
+        width: calc(50% - 0.5rem);
+        margin-bottom: 0.75rem;
+    }
+}
+
+/* Fix for browsers that don't support CSS custom properties */
+@supports not (--css: variables) {
+
+    body {
+        color: #1e293b;
+        background-color: #f8fafc;
+    }
+
+    h1 {
+        color: #2563eb;
+    }
+
+    .state-item input[type="text"] {
+        border-color: #e2e8f0;
+    }
+
+    .state-item input[type="text"]:focus {
+        border-color: #2563eb;
+    }
+
+    .answer-link {
+        background-color: #2563eb;
+    }
+
+    .nav-link {
+        background-color: #64748b;
+    }
+}
+
+/* Internet Explorer 11 specific fixes */
+@media screen and (-ms-high-contrast: active),
+(-ms-high-contrast: none) {
+    .quiz-form {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    }
+
+    .state-item {
+        -ms-flex: 0 0 calc(50% - 1rem);
+        flex: 0 0 calc(50% - 1rem);
+    }
+
+    .answer-list {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    }
+
+    .answer-item {
+        -ms-flex: 0 0 calc(50% - 1rem);
+        flex: 0 0 calc(50% - 1rem);
+    }
+}
+
+/* Safari-specific fixes */
+@supports (-webkit-appearance: none) {
+    .state-item input[type="text"] {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        border-radius: var(--border-radius);
+    }
+}
+
+/* Firefox-specific fixes */
+@-moz-document url-prefix() {
+    .state-item input[type="text"] {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+    }
+}
+
+/* Additional Accessibility Enhancements */
+
+/* Ensure proper heading hierarchy is announced by screen readers */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: bold;
+}
+
+/* Improve form accessibility */
+fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+legend {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+/* Ensure buttons and links are properly sized for touch */
+@media (pointer: coarse) {
+
+    .answer-link,
+    .nav-link {
+        min-height: 48px;
+        padding: 0.75rem 1.5rem;
+    }
+
+    .state-item input[type="text"] {
+        min-height: 48px;
+        padding: 0.875rem;
+    }
+}
+
+/* Dark mode support for users who prefer it */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --primary-color: #3b82f6;
+        --secondary-color: #94a3b8;
+        --success-color: #10b981;
+        --background-color: #0f172a;
+        --text-color: #f1f5f9;
+        --border-color: #334155;
+    }
+
+    body {
+        background-color: var(--background-color);
+        color: var(--text-color);
+    }
+
+    .state-item,
+    .answer-item {
+        background-color: #1e293b;
+        border-color: var(--border-color);
+    }
+
+    .state-item input[type="text"] {
+        background-color: #1e293b;
+        color: var(--text-color);
+        border-color: var(--border-color);
+    }
+
+    .state-item input[type="text"]::placeholder {
+        color: var(--secondary-color);
+    }
+}
+
+/* Windows High Contrast Mode support */
+@media screen and (-ms-high-contrast: active) {
+
+    .state-item,
+    .answer-item {
+        border: 2px solid WindowText;
+    }
+
+    .state-item input[type="text"] {
+        border: 2px solid WindowText;
+        background-color: Window;
+        color: WindowText;
+    }
+
+    .answer-link,
+    .nav-link {
+        border: 2px solid WindowText;
+        background-color: ButtonFace;
+        color: ButtonText;
+    }
+}
+
+/* Ensure smooth scrolling works across browsers */
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        scroll-behavior: smooth;
+    }
+}
+
+/* Performance optimization: will-change for animated elements */
+.state-item:hover,
+.answer-item:hover,
+.answer-link:hover,
+.nav-link:hover {
+    will-change: transform, box-shadow;
+}
+
+/* Remove will-change after animation completes */
+.state-item,
+.answer-item,
+.answer-link,
+.nav-link {
+    will-change: auto;
+}
